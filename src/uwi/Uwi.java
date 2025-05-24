@@ -3,7 +3,7 @@ package uwi;
 import java.util.Arrays;
 
 public class Uwi {
-    // Tree representation of graph
+    // Tree representation of graph - used in Weekly 426, 3373
     public static int[][] packU(int n, int[][] ft)
     {
         int[][] g = new int[n][];
@@ -19,6 +19,7 @@ public class Uwi {
         return g;
     }
 
+    // Get parents, bfs traversed and depth of all nodes - used in Weekly 426, 3373
     public static int[][] parents(int[][] g, int root) {
         int n = g.length;
         int[] par = new int[n];
