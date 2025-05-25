@@ -1,9 +1,9 @@
 package math;
 
 public class FastExpMatrix {
-    private static final int MOD = 1_000_000_007;
+    static final int MOD = 1_000_000_007;
 
-    private long[][] mul(long[][] mat1, long[][] mat2) {
+    static long[][] mul(long[][] mat1, long[][] mat2) {
         var m = mat1.length;
         var n = mat1[0].length;
         var p = mat2[0].length;
@@ -24,7 +24,7 @@ public class FastExpMatrix {
         return result;
     }
 
-    private long[][] fastExp(long[][] mat, int pow) {
+    static long[][] fastExp(long[][] mat, int pow) {
         if (pow == 1) {
             return mat;
         }

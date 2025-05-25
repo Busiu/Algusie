@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SieveOfEratosthenes {
-    private List<Integer> sieve(int n) {
+    List<Integer> sieve(int n) {
         var notPrime = new boolean[n];
         for (int i = 2; i < n; i++) {
             if (notPrime[i]) {

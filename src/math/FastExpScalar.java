@@ -1,9 +1,9 @@
 package algos.math;
 
 public class FastExpScalar {
-    private static final int MOD = 1_000_000_007;
+    static final int MOD = 1_000_000_007;
 
-    private long fastExp(int base, int power) {
+    static long fastExp(int base, int power) {
         var result = 1L;
         long tmp = base;
         while (power > 0) {
