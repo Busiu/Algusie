@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Preprocessing {
 
-    // Create list of connections from the given list of edges
+    // Create a list of connections from the given list of edges
     static List<List<int[]>> createGraph(int[][] edges) {
         var cons = new ArrayList<List<int[]>>();
         var n = edges.length + 1;
