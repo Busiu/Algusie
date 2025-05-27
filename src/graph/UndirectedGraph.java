@@ -3,13 +3,11 @@ package graph;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Preprocessing {
+public class UndirectedGraph {
 
-    // Create a list of connections from the given list of edges
-    static List<List<int[]>> createGraph(int[][] edges) {
+    static List<List<int[]>> createGraph(int[][] edges, int size) {
         var cons = new ArrayList<List<int[]>>();
-        var n = edges.length + 1;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < size; i++) {
             cons.add(new ArrayList<>());
         }
         for (var edge : edges) {
