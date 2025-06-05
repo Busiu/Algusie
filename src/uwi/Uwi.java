@@ -42,4 +42,17 @@ public class Uwi {
         }
         return new int[][]{par, q, depth};
     }
+
+    // Get sorted count of unique elements
+    public int[][] uniqcount(int[] a)
+    {
+        int n = a.length;
+        int p = 0;
+        int[][] b = new int[n][];
+        for(int i = 0;i < n;i++){
+            if(i == 0 || a[i] != a[i-1])b[p++] = new int[]{a[i], 0};
+            b[p-1][1]++;
+        }
+        return Arrays.copyOf(b, p);
+    }
 }
