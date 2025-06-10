@@ -28,12 +28,12 @@ class SegmentTree {
     }
 
     long query(int v, int tl, int tr, int l, int r) {
-        if (l > r) return neutralElement();
-        if (l == tl && r == tr) return t[v];
+        if (tl > r || tr < l) return neutralElement();
+        if (l <= tl && r >= tr) return t[v];
         int tm = tl + (tr - tl) / 2;
         return combine(
-                query(2 * v, tl, tm, l, Math.min(r, tm)),
-                query(2 * v + 1, tm + 1, tr, Math.max(tm + 1, l), r)
+                query(2 * v, tl, tm, l, r),
+                query(2 * v + 1, tm + 1, tr, l, r)
         );
     }
 
