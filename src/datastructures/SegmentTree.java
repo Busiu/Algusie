@@ -4,9 +4,10 @@ class SegmentTree {
     long[] t;
     int n;
 
-    SegmentTree(int[] arr) {
+    SegmentTree(long[] arr) {
         this.n = arr.length;
         this.t = new long[4 * n];
+        build(arr, 1, 0, n - 1);
     }
 
     long combine(long a, long b) {
@@ -44,6 +45,15 @@ class SegmentTree {
             if (idx <= tm) update(2 * v, tl, tm, idx, val);
             else update(2 * v + 1, tm + 1, tr, idx, val);
             t[v] = combine(t[2 * v], t[2 * v + 1]);
+        }
+    }
+
+    void print(int v, int tl, int tr) {
+        System.out.printf("[%s - %s]: %s%n", tl, tr, t[v]);
+        if (tl != tr) {
+            int tm = tl + (tr - tl) / 2;
+            print(2 * v, tl, tm);
+            print(2 * v + 1, tm + 1, tr);
         }
     }
 }
