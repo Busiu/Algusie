@@ -2,10 +2,15 @@ package datastructures;
 
 public class DSU {
     int[] parents;
+    int[] size;
 
-    DSU (int size) {
-        this.parents = new int[size];
-        for (int i = 0; i < size; i++) parents[i] = i;
+    DSU (int n) {
+        this.parents = new int[n];
+        this.size = new int[n];
+        for (int i = 0; i < n; i++) {
+            parents[i] = i;
+            size[i] = 1;
+        }
     }
 
     int find(int x) {
@@ -18,8 +23,14 @@ public class DSU {
         var yParent = find(y);
 
         if (xParent == yParent) return false;
-        else if (xParent > yParent) parents[xParent] = yParent;
-        else parents[yParent] = xParent;
+
+        if (size[xParent] > size[yParent]) {
+            parents[yParent] = xParent;
+            size[xParent] += size[yParent];
+        } else {
+            parents[xParent] = yParent;
+            size[yParent] += size[xParent];
+        }
 
         return true;
     }
