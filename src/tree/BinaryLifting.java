@@ -1,5 +1,9 @@
 package tree;
 
+// TODO: Implementation given int[] children -> (DFS)
+// TODO: Implementation for 3585 (depth (no need for anc == -1 check), dist from root, dist from ancestor itp...)
+//       For this, use preprocessing -> query logic.
+
 public class BinaryLifting {
     int log;
     int[][] up;
