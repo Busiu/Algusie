@@ -17,6 +17,10 @@ public class Divisibility {
         return a;
     }
 
+    long recursiveGcd(long a, long b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
     long lcm(long a, long b) {
         return a * (b / gcd(a, b));
     }
