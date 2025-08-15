@@ -4,7 +4,7 @@ class SegmentTree {
     long[] tree;
     int n;
 
-    SegmentTree(long[] arr) {
+    SegmentTree(int[] arr) {
         this.n = arr.length;
         this.tree = new long[4 * n];
         build(arr, 1, 0, n - 1);
@@ -18,7 +18,7 @@ class SegmentTree {
         return 0;
     }
 
-    private void build(long[] arr, int v, int tl, int tr) {
+    private void build(int[] arr, int v, int tl, int tr) {
         if (tl == tr) tree[v] = arr[tl];
         else {
             int tm = tl + (tr - tl) / 2;

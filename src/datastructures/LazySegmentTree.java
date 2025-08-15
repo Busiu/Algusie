@@ -1,22 +1,22 @@
 package datastructures;
 
 class LazySegmentTree {
-    int[] tree;
-    int[] lazy;
+    long[] tree;
+    long[] lazy;
     int n;
 
     LazySegmentTree(int[] arr) {
         this.n = arr.length;
-        this.tree = new int[4 * n];
-        this.lazy = new int[4 * n];
+        this.tree = new long[4 * n];
+        this.lazy = new long[4 * n];
         build(arr, 1, 0, n - 1);
     }
 
-    int combine(int a, int b) {
+    long combine(long a, long b) {
         return Math.max(a, b);
     }
 
-    int neutralElement() {
+    long neutralElement() {
         return 0;
     }
 
@@ -41,7 +41,7 @@ class LazySegmentTree {
         }
     }
 
-    private int queryRange(int v, int tl, int tr, int l, int r) {
+    private long queryRange(int v, int tl, int tr, int l, int r) {
         if (tl > r || tr < l) return neutralElement();
         push(v, tl, tr);
         if (l <= tl && r >= tr) return tree[v];
@@ -66,7 +66,7 @@ class LazySegmentTree {
         }
     }
 
-    int queryRange(int l, int r) {
+    long queryRange(int l, int r) {
         return queryRange(1, 0, n - 1, l, r);
     }
 
