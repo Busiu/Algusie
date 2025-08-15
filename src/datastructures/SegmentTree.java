@@ -1,12 +1,12 @@
 package datastructures;
 
 class SegmentTree {
-    long[] t;
+    long[] tree;
     int n;
 
     SegmentTree(long[] arr) {
         this.n = arr.length;
-        this.t = new long[4 * n];
+        this.tree = new long[4 * n];
         build(arr, 1, 0, n - 1);
     }
 
@@ -18,19 +18,19 @@ class SegmentTree {
         return 0;
     }
 
-    void build(long[] arr, int v, int tl, int tr) {
-        if (tl == tr) t[v] = arr[tl];
+    private void build(long[] arr, int v, int tl, int tr) {
+        if (tl == tr) tree[v] = arr[tl];
         else {
             int tm = tl + (tr - tl) / 2;
             build(arr, 2 * v, tl, tm);
             build(arr, 2 * v + 1, tm + 1, tr);
-            t[v] = combine(t[2 * v], t[2 * v + 1]);
+            tree[v] = combine(tree[2 * v], tree[2 * v + 1]);
         }
     }
 
-    long query(int v, int tl, int tr, int l, int r) {
+    private long query(int v, int tl, int tr, int l, int r) {
         if (tl > r || tr < l) return neutralElement();
-        if (l <= tl && r >= tr) return t[v];
+        if (l <= tl && r >= tr) return tree[v];
         int tm = tl + (tr - tl) / 2;
         return combine(
                 query(2 * v, tl, tm, l, r),
@@ -38,18 +38,26 @@ class SegmentTree {
         );
     }
 
-    void update(int v, int tl, int tr, int idx, int val) {
-        if (tl == tr) t[v] = val;
+    private void update(int v, int tl, int tr, int idx, int val) {
+        if (tl == tr) tree[v] = val;
         else {
             int tm = tl + (tr - tl) / 2;
             if (idx <= tm) update(2 * v, tl, tm, idx, val);
             else update(2 * v + 1, tm + 1, tr, idx, val);
-            t[v] = combine(t[2 * v], t[2 * v + 1]);
+            tree[v] = combine(tree[2 * v], tree[2 * v + 1]);
         }
     }
 
+    long query(int l, int r) {
+        return query(1, 0, n - 1, l, r);
+    }
+
+    void update(int idx, int val) {
+        update(1, 0, n - 1, idx, val);
+    }
+
     void print(int v, int tl, int tr) {
-        System.out.printf("[%s - %s]: %s%n", tl, tr, t[v]);
+        System.out.printf("[%s - %s]: %s%n", tl, tr, tree[v]);
         if (tl != tr) {
             int tm = tl + (tr - tl) / 2;
             print(2 * v, tl, tm);
