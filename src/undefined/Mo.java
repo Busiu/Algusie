@@ -1,37 +1,30 @@
 package undefined;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.TreeSet;
+import datastructures.multiset.MultiHashSet;
+
+import java.util.*;
 
 // Implementation for 3636 - https://leetcode.com/problems/threshold-majority-queries/
 public class Mo {
 
     record Query(int l, int r, int threshold, int idx) {}
 
-    HashMap<Integer, Integer> numToFreq;
+    MultiHashSet<Integer> numCounter;
     ArrayList<TreeSet<Integer>> freqToElems;
     int maxFreq;
     int[] nums;
 
     void add(int idx) {
         int num = nums[idx];
-        int curFreq = numToFreq.getOrDefault(num, 0);
-        freqToElems.get(curFreq).remove(num);
-        curFreq++;
-        freqToElems.get(curFreq).add(num);
-        numToFreq.put(num, curFreq);
-        maxFreq = Math.max(maxFreq, curFreq);
+        freqToElems.get(numCounter.get(num)).remove(num);
+        freqToElems.get(numCounter.add(num)).add(num);
+        maxFreq = Math.max(maxFreq, numCounter.get(num));
     }
 
     void remove(int idx) {
         int num = nums[idx];
-        int curFreq = numToFreq.getOrDefault(num, 0);
-        freqToElems.get(curFreq).remove(num);
-        curFreq--;
-        if (curFreq > 0) freqToElems.get(curFreq).add(num);
-        numToFreq.put(num, curFreq);
+        freqToElems.get(numCounter.get(num)).remove(num);
+        if (numCounter.remove(num) > 0) freqToElems.get(numCounter.get(num)).add(num);
         if (freqToElems.get(maxFreq).isEmpty() && maxFreq > 0) maxFreq--;
     }
 
@@ -61,7 +54,7 @@ public class Mo {
         });
 
         // Create Data Structures for answers
-        numToFreq = new HashMap<>();                                                // --> MultiSet
+        numCounter = new MultiHashSet<>();
         freqToElems = new ArrayList<>();
         maxFreq = 0;
         for (int i = 0; i <= nums.length; i++) freqToElems.add(new TreeSet<>());
