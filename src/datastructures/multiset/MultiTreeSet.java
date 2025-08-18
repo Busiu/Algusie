@@ -1,15 +1,15 @@
 package datastructures.multiset;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.TreeMap;
 
-public class MultiHashSet<E> {
-    HashMap<E, Integer> freqMap = new HashMap<>();
+public class MultiTreeSet<E extends Comparable<E>> {
+    TreeMap<E, Integer> freqMap = new TreeMap<>();
     int size;
 
-    public MultiHashSet() {}
+    public MultiTreeSet() {}
 
-    public MultiHashSet(Collection<? extends E> c) {
+    public MultiTreeSet(Collection<? extends E> c) {
         for(E element : c) add(element);
     }
 
@@ -40,5 +40,29 @@ public class MultiHashSet<E> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public E first() {
+        return freqMap.firstKey();
+    }
+
+    public E last() {
+        return freqMap.lastKey();
+    }
+
+    public E ceiling(E element) {
+        return freqMap.ceilingKey(element);
+    }
+
+    public E floor(E element) {
+        return freqMap.floorKey(element);
+    }
+
+    public E higher(E element) {
+        return freqMap.higherKey(element);
+    }
+
+    public E lower(E element) {
+        return freqMap.lowerKey(element);
     }
 }
