@@ -34,12 +34,20 @@ public class MultiTreeSet<E extends Comparable<E>> {
         return freq == null ? 0 : freq;
     }
 
+    public int getNoKeys() {
+        return freqMap.size();
+    }
+
+    public int getNoAllElements() {
+        return size;
+    }
+
     public boolean contains(E element) {
         return get(element) > 0;
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return freqMap.isEmpty();
     }
 
     public E first() {
