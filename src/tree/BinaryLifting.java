@@ -2,6 +2,12 @@ package tree;
 
 import java.util.ArrayList;
 
+// 1. Find maxPower
+// 2. Calculate UP, and other values like depth, dist etc...
+// 3. Implement LCA
+// a. Make nodes the same depth
+// b. Calculate LCA using Binary Search
+
 class BinaryLifting {
     int maxPower;
     int[] depth;
