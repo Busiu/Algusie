@@ -1,4 +1,4 @@
-package datastructures;
+package datastructures.segmenttrees;
 
 class FenwickTree {
     int n;
