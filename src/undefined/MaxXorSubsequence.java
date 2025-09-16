@@ -1,6 +1,5 @@
 package undefined;
 
-
 // Idea: https://www.geeksforgeeks.org/dsa/find-maximum-subset-xor-given-set/
 // Proof idea: xoring one row with another one does not change max xor of the system. Such transitions are equivalent.
 public class MaxXorSubsequence {

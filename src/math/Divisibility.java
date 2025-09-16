@@ -8,7 +8,7 @@ public class Divisibility {
             b = tmp;
         }
         while (b > 0) {
-            a -= (a / b) * b;
+            a %= b;
             var tmp = a;
             a = b;
             b = tmp;
