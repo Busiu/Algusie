@@ -2,75 +2,66 @@ package tree;
 
 import java.util.ArrayList;
 
-// 1. Find maxPower
-// 2. Calculate UP, and other values like depth, dist etc...
-// 3. Implement LCA
-// a. Make nodes the same depth
-// b. Calculate LCA using Binary Search
+// 1. Find log
+// 2. Calculate up, tin, tout using DFS. Start with dfs(root, root)
+// 3. U is ancestor of V <==> tin[u] <= tin[v] && tout[u] >= tout[v]
+// 4. Implement LCA
+// a. Consider cases where u can be the ancestor of v and vice versa
+// b. Otherwise - Calculate LCA using quasi Binary Search
 
-class BinaryLifting {
-    int maxPower;
-    int[] depth;
-    long[] dist;
+public class BinaryLifting {
+    int log;
+    int n;
+    int timer;
+    ArrayList<ArrayList<Integer>> cons;
+    int[] tin;
+    int[] tout;
     int[][] up;
-    ArrayList<ArrayList<int[]>> cons;
 
-    BinaryLifting(int n, ArrayList<ArrayList<int[]>> cons) {
-        this.maxPower = 0;
-        while (1 << maxPower <= n) this.maxPower++;
-
-        this.depth = new int[n];
-        this.dist = new long[n];
-        this.up = new int[n][maxPower];
+    BinaryLifting(int n, ArrayList<ArrayList<Integer>> cons) {
+        this.n = n;
         this.cons = cons;
 
-        depth[0] = 0;
-        dist[0] = 0;
-        for (int i = 0; i < maxPower; i++) {
-            up[0][i] = 0;
-        }
+        log = 1;
+        while ((1 << log) <= n) log++;
 
-        for (int[] child : cons.get(0)) {
-            dfs(child[0], 0, child[1]);
-        }
+        timer = 0;
+        tin = new int[n];
+        tout = new int[n];
+
+        up = new int[n][log];
+        dfs(0, 0);
     }
 
-    void dfs(int cur, int prev, int edgeLen) {
-        depth[cur] = depth[prev] + 1;
-        dist[cur] = dist[prev] + (long) edgeLen;
+    void dfs(int cur, int prev) {
+        tin[cur] = ++timer;
+
         up[cur][0] = prev;
-        for (int i = 1; i < maxPower; i++) {
+        for (int i = 1; i < log; i++) {
             up[cur][i] = up[up[cur][i - 1]][i - 1];
         }
 
-        for (int[] child : cons.get(cur)) {
-            if (child[0] == prev) continue;
-            dfs(child[0], cur, child[1]);
+        for (int nei : cons.get(cur)) {
+            if (nei == prev) continue;
+            dfs(nei, cur);
         }
+
+        tout[cur] = ++timer;
     }
 
-    int lca(int node1, int node2) {
-        if (depth[node1] < depth[node2]) {
-            int tmp = node1;
-            node1 = node2;
-            node2 = tmp;
-        }
-        int diff = depth[node1] - depth[node2];
-        for (int i = 0; i < maxPower; i++) {
-            if ((diff & (1 << i)) > 0) {
-                node1 = up[node1][i];
+    boolean isAncestor(int u, int v) {
+        return tin[u] <= tin[v] && tout[u] >= tout[v];
+    }
+
+    int lca(int u, int v) {
+        if (isAncestor(u, v)) return u;
+        if (isAncestor(v, u)) return v;
+
+        for (int i = log - 1; i >= 0; i--) {
+            if (!isAncestor(up[u][i], v)) {
+                u = up[u][i];
             }
         }
-
-        if (node1 == node2) return node1;
-
-        for (int i = maxPower - 1; i >= 0; i--) {
-            if (up[node1][i] != up[node2][i]) {
-                node1 = up[node1][i];
-                node2 = up[node2][i];
-            }
-        }
-
-        return up[node1][0];
+        return up[u][0];
     }
 }
