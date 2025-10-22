@@ -8,7 +8,7 @@ public class BinarySearch {
     int lowerBound(ArrayList<Integer> arr, int val) {
         int left = 0, right = arr.size();
         while (left < right) {
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             if (arr.get(mid) >= val) {
                 right = mid;
             } else {
