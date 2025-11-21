@@ -1,4 +1,4 @@
-package algos.math;
+package math;
 
 public class FastExpScalar {
     static final int MOD = 1_000_000_007;
