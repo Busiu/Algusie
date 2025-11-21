@@ -1,4 +1,4 @@
-package WeirdAlgorithm;
+package introductoryproblems.WeirdAlgorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package MissingNumber;
+package introductoryproblems.MissingNumber;
 
 import java.io.*;
 import java.util.*;
