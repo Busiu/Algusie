@@ -4,12 +4,9 @@ class FenwickTree {
     int n;
     int[] fenTree;
 
-    FenwickTree(int[] arr) {
-        this.n = arr.length + 1;
-        this.fenTree = new int[n];
-        for (int i = 0; i < n - 1; i++) {
-            add(i, arr[i]);
-        }
+    FenwickTree(int n) {
+        this.n = n + 1;
+        this.fenTree = new int[this.n];
     }
 
     void add(int i, int val) {
@@ -22,7 +19,7 @@ class FenwickTree {
 
     int sum(int i) {
         i++;
-        var sum = 0;
+        int sum = 0;
         while (i > 0) {
             sum += fenTree[i];
             i -= (i & -i);
