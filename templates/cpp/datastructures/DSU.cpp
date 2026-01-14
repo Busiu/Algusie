@@ -21,7 +21,7 @@ struct DSU {
         return parents[x];
     }
 
-    boolean union(int x, int y) {
+    bool union(int x, int y) {
         int xParent = find(x), yParent = find(y);
         if (xParent == yParent) return false;
 
@@ -35,7 +35,7 @@ struct DSU {
         return true;
     }
 
-    boolean areConnected(int x, int y) {
+    bool areConnected(int x, int y) {
         return find(x) == find(y);
     }
 }
