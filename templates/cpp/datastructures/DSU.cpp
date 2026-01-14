@@ -4,14 +4,14 @@ using namespace std;
 
 struct DSU {
     vector<int> parents;
-    vector<int> size;
+    vector<int> rank;
 
     DSU(int size) {
-        parents.assign(size);
+        parents.assign(size, 0);
         for (int i = 0; i < size; i++) {
             parents[i] = i;
         }
-        size.assign(size, 1);
+        rank.assign(size, 1);
     }
 
     int find(int x) {
@@ -21,16 +21,16 @@ struct DSU {
         return parents[x];
     }
 
-    bool union(int x, int y) {
+    bool union_sets(int x, int y) {
         int xParent = find(x), yParent = find(y);
         if (xParent == yParent) return false;
 
-        if (size[xParent] > size[yParent]) {
-            parents[yParents] = xParent;
-            size[xParent] += size[yParent];
+        if (rank[xParent] > rank[yParent]) {
+            parents[yParent] = xParent;
+            rank[xParent] += rank[yParent];
         } else {
-            parents[xParents] = yParent;
-            size[yParent] += size[zParent];
+            parents[xParent] = yParent;
+            rank[yParent] += rank[xParent];
         }
         return true;
     }
@@ -38,4 +38,4 @@ struct DSU {
     bool areConnected(int x, int y) {
         return find(x) == find(y);
     }
-}
+};

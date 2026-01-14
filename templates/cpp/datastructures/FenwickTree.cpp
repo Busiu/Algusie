@@ -26,4 +26,4 @@ struct FenwickTree {
         }
         return ans;
     }
-}
+};
