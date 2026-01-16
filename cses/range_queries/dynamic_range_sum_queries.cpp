@@ -7,7 +7,7 @@ using namespace std;
 struct SegmentTree {
 private:
     int len;
-    vector<int> segTree;
+    vector<ll> segTree;
 
     void build(vector<int>& arr, int at, int tl, int tr) {
         if (tl == tr) {
@@ -18,7 +18,7 @@ private:
         int tm = (tl + tr) / 2;
         build(arr, 2 * at, tl, tm);
         build(arr, 2 * at + 1, tm + 1, tr);
-        segTree[at] = min(segTree[2 * at], segTree[2 * at + 1]);
+        segTree[at] = segTree[2 * at] + segTree[2 * at + 1];
     }
 
     void set(int idx, int val, int at, int tl, int tr) {
@@ -30,20 +30,20 @@ private:
         int tm = (tl + tr) / 2;
         if (idx <= tm) set(idx, val, 2 * at, tl, tm);
         else set(idx, val, 2 * at + 1, tm + 1, tr);
-        segTree[at] = min(segTree[2 * at], segTree[2 * at + 1]);
+        segTree[at] = segTree[2 * at] + segTree[2 * at + 1];
     }
 
-    int query(int l, int r, int at, int tl, int tr) {
-        if (tr < l || r < tl) return INT32_MAX;
+    ll query(int l, int r, int at, int tl, int tr) {
+        if (tr < l || r < tl) return 0;
         if (l <= tl && tr <= r) return segTree[at];
 
         int tm = (tl + tr) / 2;
-        return min(query(l, r, 2 * at, tl, tm), query(l, r, 2 * at + 1, tm + 1, tr));
+        return query(l, r, 2 * at, tl, tm) + query(l, r, 2 * at + 1, tm + 1, tr);
     }
 
 public:
     SegmentTree(vector<int>& arr) : len(arr.size()) {
-        segTree = vector<int> (4 * len, 0);
+        segTree = vector<ll> (4 * len, 0);
         build(arr, 1, 0, len - 1);
     }
 
@@ -51,7 +51,7 @@ public:
         set(idx, val, 1, 0, len - 1);
     }
 
-    int query(int l, int r) {
+    ll query(int l, int r) {
         return query(l, r, 1, 0, len - 1);
     }
 };
