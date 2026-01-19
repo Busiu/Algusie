@@ -2,5 +2,6 @@
 .vscode
 out
 solution.cpp
+**/*.out
 **/*.exe
 **/*.txt
