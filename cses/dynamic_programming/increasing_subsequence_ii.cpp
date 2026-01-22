@@ -1,8 +1,3 @@
-// Flashcard
-// 1. Solution
-// 2. Many solution uses Interative SegTree.... Maybe I should learn it as well?
-
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 

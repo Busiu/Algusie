@@ -1,11 +1,3 @@
-// Flashcard
-// 1. Solution
-// 2. How to create Structs easy.
-// 3. Default + combine make SegTrees implementation easier. AI -> add to SegTree Template
-// 4. Build is not always necessary -> we can use set instead.... AI -> Change the SegTree Flashcard
-// 5. When tl == tr in build or set -> remember about RETURN!!!
-
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
