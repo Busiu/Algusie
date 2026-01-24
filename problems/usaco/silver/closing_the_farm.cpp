@@ -1,5 +1,6 @@
 // Link - https://usaco.org/index.php?page=viewproblem2&cpid=644
 // Source - https://usaco.guide/silver/graph-traversal?lang=cpp
+// Date - 24-01-2026
 
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
