@@ -1,3 +1,6 @@
+// Link - https://usaco.org/index.php?page=viewproblem2&cpid=1041
+// Source - https://usaco.guide/gold/PURS
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 
