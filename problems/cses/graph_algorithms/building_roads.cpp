@@ -1,4 +1,5 @@
-// Date - 23-01-2026
+// Link - https://cses.fi/problemset/task/1666
+// Date - 2026-01-23
 
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>

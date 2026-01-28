@@ -1,6 +1,6 @@
 // Link - ??? (example: https://usaco.org/index.php?page=viewproblem2&cpid=644)
 // Source - ??? (example: https://usaco.guide/silver/graph-traversal?lang=cpp)
-// Date - ??? (example: 24-01-2026)
+// Date - ??? (example: 2026-01-24)
 
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
