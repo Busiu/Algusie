@@ -16,7 +16,7 @@ template <typename T>
 using indexed_set =
     tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-int MOD = 1e9 + 7;
+const int MOD = 1e9 + 7;
 
 int main() {
     ios_base::sync_with_stdio(0); cin.tie(0);
