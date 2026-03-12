@@ -49,6 +49,6 @@ int main() {
 
     assert(dsu.areConnected(0, 2)); // 0 and 2 should be connected
     assert(!dsu.areConnected(0, 3)); // 0 and 3 should NOT be connected
-    std::cout << "Test Case 1 Passed: Basic connectivity confirmed." << std::endl;
+    cout << "Test Case 1 Passed: Basic connectivity confirmed." << endl;
     return 0;
 }
