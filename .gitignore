@@ -5,3 +5,4 @@ solution.cpp
 **/*.out
 **/*.exe
 **/*.txt
+**/templates/cpp/google_interview

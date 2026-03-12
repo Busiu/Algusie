@@ -21,7 +21,7 @@ struct DSU {
         return parents[x];
     }
 
-    bool union_sets(int x, int y) {
+    bool unite(int x, int y) {
         int xParent = find(x), yParent = find(y);
         if (xParent == yParent) return false;
 
@@ -39,3 +39,16 @@ struct DSU {
         return find(x) == find(y);
     }
 };
+
+int main() {
+    // --- Test Case 1: Linear Chain (Basic Connectivity) ---
+    DSU dsu(5);
+    dsu.unite(0, 1);
+    dsu.unite(1, 2);
+    dsu.unite(3, 4);
+
+    assert(dsu.areConnected(0, 2)); // 0 and 2 should be connected
+    assert(!dsu.areConnected(0, 3)); // 0 and 3 should NOT be connected
+    std::cout << "Test Case 1 Passed: Basic connectivity confirmed." << std::endl;
+    return 0;
+}
